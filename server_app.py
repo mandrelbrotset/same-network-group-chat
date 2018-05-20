@@ -8,11 +8,8 @@
 
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
-import serverSetup
-import serverMainWindow
-import debugMsgWidget
-import clientListWidget
-import server
+from widgets import serverSetup, serverMainWindow, debugMsgWidget, clientListWidget
+from networking import server
 
 class main(QtWidgets.QMainWindow, serverMainWindow.Ui_MainWindow):
     def __init__(self, parent=None):
