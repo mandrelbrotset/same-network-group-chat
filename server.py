@@ -1,81 +1,102 @@
-# -*- coding: utf-8 -*-
+from socket import *
+import threading
+import random
+import pickle
+import queue
+from PyQt5.QtCore import QThread, QTimer
 
-# Form implementation generated from reading ui file 'server.ui'
-#
-# Created by: PyQt5 UI code generator 5.10.1
-#
-# WARNING! All changes made in this file will be lost!
+class Server(QThread):
+    def __init__(self, host, port, clientField, debugField):
+        super(Server, self).__init__(parent = None)
+        self.connections = []
+        self.messageQueue = queue.Queue()
+        self.host = host
+        self.port = port
+        self.clientField = clientField
+        self.debugField = debugField
 
-import sys
-from PyQt5 import QtCore, QtGui, QtWidgets
-import userInputWidget
-import serverMainWindow
-import debugMsgWidget
-import clientListWidget
-import server2
+        # create a socket
+        self.serversock = socket(AF_INET, SOCK_STREAM)
+        self.serversock.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
 
-class main(QtWidgets.QMainWindow, serverMainWindow.Ui_MainWindow):
-    def __init__(self, parent=None):
-        super(main, self).__init__(parent)
-        self.setupUi(self)
+        # create a qtimer to call the sendMsgs method every .5 second
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.sendMsgs)
+        self.timer.start(500)
 
-        #create instances of the forms
-        self.userInput = userInputWidget.Ui_Form()
-        self.client = clientListWidget.Ui_Form()
-        self.debug = debugMsgWidget.Ui_Form()
+        #self.timer1 = QTimer()
+        #self.timer1.timeout.connect(self.updateClients)
+        #self.timer1.start(500)
 
-        # create widgets
-        self.inputWidget = QtWidgets.QWidget(self)          # widget to show input for host and port number
-        self.clientwidget = QtWidgets.QWidget(self)         # widget to show the clients and debug messages
-        self.debugWidget = QtWidgets.QWidget(self)
+        # start server on specified host and port
+        try:
+            self.port = int(self.port)
+            self.serversock.bind((self.host, self.port))
+        except Exception as e:
+            print(e)
+            # if error occurs try another port number
+            self.port = int(self.port) + random.randint(1, 1000)
+            self.serversock.bind((self.host, self.port))
 
-        # put the widgets in the correct position
-        self.clientwidget.setGeometry(0, 0, 348, 200)
-        self.debugWidget.setGeometry(0, 180, 348, 100)
+        self.serversock.listen(5)
 
-        # add the forms to a widget
-        self.userInput.setupUi(self.inputWidget)
-        self.client.setupUi(self.clientwidget)
-        self.debug.setupUi(self.debugWidget)
+        debugMsg = "Server running on {} at port {}".format(self.host, self.port) 
+        self.debugField.addItem(debugMsg)
+        print(debugMsg)
 
-        # show input widget and hide the widget
-        self.inputWidget.setVisible(True)
-        self.clientwidget.setHidden(True)
-        self.debugWidget.setHidden(True)
+    def run(self):
+        while True:
+            self.clientsock, self.addr = self.serversock.accept()
 
-        # if start or stop server button is pressed
-        self.start_stop_server.clicked.connect(self.start_stop)
-        # also start server on pressing return in the port number field
-        self.userInput.portNoField.returnPressed.connect(self.start_stop)
+            if self.clientsock:
+                self.data = self.clientsock.recv(1024)
+                self.nickname = pickle.loads(self.data)
+                self.clientField.addItem(self.nickname)
+                self.connections.append((self.nickname, self.clientsock, self.addr))
+                threading.Thread(target=self.receiveMsg, args=(self.clientsock, self.addr), daemon=True).start()
+    
+    def receiveMsg(self, sock, addr):
+        length = len(self.connections)
+        debugMsg = "{} is connected with {} on port {} ".format(self.connections[length-1][0], self.connections[length-1][2][0], self.connections[length-1][2][1])
+        self.debugField.addItem(debugMsg)
 
-        self.show()
+        while True:
+            try:
+                self.data = sock.recv(1024)
+            except:
+                self.data = None
 
-        self.hostname = "127.0.0.1"
-        self.port = ""
+            if self.data:
+                self.data = pickle.loads(self.data)
+                
+                # set the nickname and message
+                print(str(self.data[0] + ": " + self.data[1]))
+                self.messageQueue.put(self.data)
 
-    def start_stop(self):
-        if self.userInput.portNoField.text() == "":
-            self.port = 8080
-        else:
-            self.port = self.userInput.portNoField.text()
+    def sendMsgs(self):
+        while(not self.messageQueue.empty()):
+            if not self.messageQueue.empty():
+                self.message = self.messageQueue.get()
+                self.message = pickle.dumps(self.message)
+                if self.message:
+                    for i in self.connections:
+                        try:
+                            i[1].send(self.message)
+                        except:
+                            debugMsg = "[ERROR] Sending message to " + str(i[0])
+                            print(debugMsg)
+                            self.debugField.addItem(debugMsg)
 
-        if self.start_stop_server.text() == "Start Server":
-            self.start_stop_server.setText("Stop Server")
-            self.clientwidget.setVisible(True)
-            self.debugWidget.setVisible(True)
-            self.inputWidget.setHidden(True)
+    """def updateClients(self):
+        count = self.clientField.count()
+        for j in self.connections:
+            print(j[0])
+            for i in range(count):
+                print(i.text())
+                if i.text() != j[0]:
+                    self.clientField.addItem(j[0])
+    """
 
-            self.server = server2.Server(self.hostname, self.port, self.client.listWidget, self.debug.listWidget)
-            self.server.start()
-        else:
-            #self.server.stop()
-            self.inputWidget.setVisible(True)
-            self.debugWidget.setHidden(True)
-            self.clientwidget.setHidden(True)
-            self.start_stop_server.setText("Start Server")
-
-if __name__=="__main__":
-    app = QtWidgets.QApplication(sys.argv)
-    mainWindow = main()
-    mainWindow.show()
-    sys.exit(app.exec())
+    #def stop(self):
+    #    for i in self.connections:
+    #        

@@ -14,7 +14,6 @@ class main(QtWidgets.QMainWindow, gui.Ui_MainWindow):
     def start(self):
         self.client = client3.Client(self.hostname, self.port, self.sendBtn, self.nickname, self.messageEdit, self.receivedMessages)
         self.client.start()
-        #threading.Thread(target=self.client.receive, daemon=True).start()
 
 if __name__=="__main__":
     app = QtWidgets.QApplication(sys.argv)
