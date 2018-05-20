@@ -8,7 +8,7 @@
 
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
-import userInputWidget
+import serverSetup
 import serverMainWindow
 import debugMsgWidget
 import clientListWidget
@@ -20,7 +20,7 @@ class main(QtWidgets.QMainWindow, serverMainWindow.Ui_MainWindow):
         self.setupUi(self)
 
         #create instances of the forms
-        self.userInput = userInputWidget.Ui_Form()
+        self.userInput = serverSetup.Ui_Form()
         self.client = clientListWidget.Ui_Form()
         self.debug = debugMsgWidget.Ui_Form()
 
@@ -50,13 +50,13 @@ class main(QtWidgets.QMainWindow, serverMainWindow.Ui_MainWindow):
 
         self.show()
 
+        # set default hostname and port number
         self.hostname = "127.0.0.1"
-        self.port = ""
+        self.port = 8080
 
     def start_stop(self):
-        if self.userInput.portNoField.text() == "":
-            self.port = 8080
-        else:
+        # if a port number is entered use that otherwise use the default port number
+        if self.userInput.portNoField.text() != "":
             self.port = self.userInput.portNoField.text()
 
         if self.start_stop_server.text() == "Start Server":

@@ -25,7 +25,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="connectButton">
    <property name="geometry">
     <rect>
      <x>1</x>
@@ -42,7 +42,7 @@
    <property name="geometry">
     <rect>
      <x>90</x>
-     <y>40</y>
+     <y>20</y>
      <width>251</width>
      <height>20</height>
     </rect>
@@ -60,7 +60,7 @@
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>99</y>
+     <y>89</y>
      <width>125</width>
      <height>31</height>
     </rect>
@@ -78,7 +78,7 @@
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>155</y>
+     <y>145</y>
      <width>125</width>
      <height>31</height>
     </rect>
@@ -92,11 +92,11 @@
     <string>Port number</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QLineEdit" name="nicknameField">
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>99</y>
+     <y>89</y>
      <width>191</width>
      <height>31</height>
     </rect>
@@ -107,11 +107,11 @@
     </font>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_2">
+  <widget class="QLineEdit" name="portNoField">
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>155</y>
+     <y>145</y>
      <width>191</width>
      <height>31</height>
     </rect>
@@ -123,6 +123,45 @@
    </property>
    <property name="inputMethodHints">
     <set>Qt::ImhDigitsOnly</set>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="hostnameField">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>200</y>
+     <width>191</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="inputMethodHints">
+    <set>Qt::ImhNone</set>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblHostname">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>200</y>
+     <width>125</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Hostname</string>
    </property>
   </widget>
  </widget>
