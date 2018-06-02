@@ -5,15 +5,18 @@ GUI group chat for computers in the same network. Multiple clients can be create
 * PyQt5
 
 ## Starting the group chat
-* Start the server by running """python3 server_app.py""" in a terminal or command prompt.
-* Leave the fields in the server program empty to use default configurations.
-* Click "start server".
-* Create a client by running """python3 client_app.py""" in a terminal or command prompt.
-* In the client program enter a nickname to be seen by other clients when you send messages.
-* If the client programs will be running on the same machine as the server, leave the hostname field blank othereise enter the IP address of tge computer running the server.
-* Leave other fields blank if you didn't enter a port number in the server program.
-* Click "Connect to server".
-* Perform steps 4 to 9 to create multiple clients.
+* Server
+1. Start the server by running 'python3 server_app.py' in a terminal or command prompt.
+2. Leave the fields in the server program empty to use default configurations.
+3. Click **Start server** button.
+* Client
+1. Create a client by running 'python3 client_app.py' in a terminal or command prompt.
+2. In the client program enter a nickname to be seen by other clients when you send messages.
+3. If the client programs will be running on the same machine as the server, leave the hostname field blank othereise enter the IP address of tge computer running the server.
+4. Leave other fields blank if you didn't enter a port number in the server program.
+5. Click **Connect to server** button.
+
+Perform the steps to start the client multiple times to create multiple clients.
 
 
 ## First run of server_app.py
