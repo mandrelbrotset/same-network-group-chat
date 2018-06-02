@@ -1,8 +1,9 @@
 # same-network-group-chat
 GUI group chat for computers in the same network. Multiple clients can be created on a single computer. After starting the server. Clients can connect to the server. Clients connected to a server will be able to send broadcast messages to other clients connected to that server. Both the server program and client program are GUI based.
 
-## Dependency
-* PyQt5
+## Dependencies
+* Python 3
+* PyQt5 :- Install by running 'pip3 install PyQt5' in a terminal or command prompt.
 
 ## Starting the group chat
 * Server
