@@ -3,7 +3,7 @@ GUI group chat for computers in the same network. Multiple clients can be create
 
 ## Dependencies
 * Python 3
-* PyQt5 :- Install by running ```pip3 install PyQt5``` in a terminal or command prompt.
+* PyQt5 :- Install by running `pip3 install PyQt5` in a terminal or command prompt.
 
 ## Starting the group chat
 * Server
