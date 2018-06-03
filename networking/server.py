@@ -70,7 +70,6 @@ class Server(QThread):
                 self.data = pickle.loads(self.data)
                 
                 # set the nickname and message
-                print(str(self.data[0] + ": " + self.data[1]))
                 self.messageQueue.put(self.data)
 
     def sendMsgs(self):
