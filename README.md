@@ -25,6 +25,10 @@ GUI group chat for computers in the same network. Multiple clients can be create
 
 Perform the steps to start the client multiple times to create multiple clients.
 
+> In theory, the code should work on all platforms. The code has not been tested with MacOS.
+> The demo video is a test run on Windows 10.
+> The screenshots below were taken on Ubuntu Linux test run.
+
 ## First run of server_app.py
 ![server_first_run](https://user-images.githubusercontent.com/24194821/40889048-acd656e6-6725-11e8-938a-c9a1d8417000.png)
 
