@@ -26,19 +26,16 @@ GUI group chat for computers in the same network. Multiple clients can be create
 Perform the steps to start the client multiple times to create multiple clients.
 
 ## First run of server_app.py
-![server_first_run](https://user-images.githubusercontent.com/24194821/40284377-0d6782fa-5c54-11e8-8c52-17fa2094a60d.png)
-
-## Server running
-![server_started](https://user-images.githubusercontent.com/24194821/40284418-a762e9a8-5c54-11e8-9fc1-e9fcd306e82e.png)
+![server_first_run](https://user-images.githubusercontent.com/24194821/40889048-acd656e6-6725-11e8-938a-c9a1d8417000.png)
 
 ## First run of client_app.py
-![client_first_run](https://user-images.githubusercontent.com/24194821/40284425-c1e3ad1c-5c54-11e8-9cce-9c304e11bded.png)
+![client_first_run](https://user-images.githubusercontent.com/24194821/40889053-b4c77a1a-6725-11e8-9f3c-eea9237e22f0.png)
 
 ## Client about to connect
-![server_client_running](https://user-images.githubusercontent.com/24194821/40284465-3ab47d52-5c55-11e8-9252-e61449d587c6.png)
+![client_about_to_connect](https://user-images.githubusercontent.com/24194821/40889052-b4a938d4-6725-11e8-9fff-792fabbe0815.png)
 
 ## One user connected
-![single_user_connected](https://user-images.githubusercontent.com/24194821/40284454-1c9b56b0-5c55-11e8-9841-826630e9488b.png)
+![one_user_connected](https://user-images.githubusercontent.com/24194821/40889055-b4fdb13e-6725-11e8-8b00-6ac51429c987.png)
 
 ## Multiple users connected
-![mulptiple_users_connected](https://user-images.githubusercontent.com/24194821/40284468-3e16d968-5c55-11e8-86ef-8a9bd7571b23.png)
+![multiple_users_connected](https://user-images.githubusercontent.com/24194821/40889054-b4e388b8-6725-11e8-8107-39fb7580fa2c.png)
