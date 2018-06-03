@@ -3,7 +3,7 @@ GUI group chat for computers in the same network. Multiple clients can be create
 
 <div align="center">
     <a href="http://www.youtube.com/watch?feature=player_embedded&v=7rgWM2COqlM" target="_blank">
-        <img src="https://img.youtube.com/vi/7rgWM2COqlM/0.jpg" alt="IMAGE ALT TEXT HERE" width="480" height="320" border="10" />
+        <img src="https://user-images.githubusercontent.com/24194821/40888675-4482ffd6-6720-11e8-9023-ee762e77df17.png" alt="IMAGE ALT TEXT HERE" width="480" height="320" border="10" />
     </a>
 </div>
 
