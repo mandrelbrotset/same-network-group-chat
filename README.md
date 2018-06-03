@@ -38,8 +38,8 @@ Perform the steps to start the client multiple times to create multiple clients.
 ## Client about to connect
 ![client_about_to_connect](https://user-images.githubusercontent.com/24194821/40889052-b4a938d4-6725-11e8-9fff-792fabbe0815.png)
 
-## One user connected
+## One client connected
 ![one_user_connected](https://user-images.githubusercontent.com/24194821/40889055-b4fdb13e-6725-11e8-8b00-6ac51429c987.png)
 
-## Multiple users connected
+## Multiple clients connected
 ![multiple_users_connected](https://user-images.githubusercontent.com/24194821/40889054-b4e388b8-6725-11e8-8107-39fb7580fa2c.png)
