@@ -36,13 +36,13 @@ class Client(object):
         self.chatWidget = QtWidgets.QWidget(self.mainWindow)
 
         self.chatWidget.setHidden(True)
-        self.chat_widget = client_ui.Ui_Form()
-        self.chat_widget.setupUi(self.chatWidget)
-        self.chat_widget.pushButton.clicked.connect(self.send_message)
+        self.chat_ui = client_ui.Ui_Form()
+        self.chat_ui.setupUi(self.chatWidget)
+        self.chat_ui.pushButton.clicked.connect(self.send_message)
 
-        self.connect_widget = connect_ui.Ui_Form()
-        self.connect_widget.setupUi(self.connectWidget)
-        self.connect_widget.pushButton.clicked.connect(self.btn_connect_clicked)
+        self.connect_ui = connect_ui.Ui_Form()
+        self.connect_ui.setupUi(self.connectWidget)
+        self.connect_ui.pushButton.clicked.connect(self.btn_connect_clicked)
 
         self.mainWindow.setGeometry(QtCore.QRect(1080, 20,350, 500))
         self.mainWindow.show()
@@ -51,9 +51,9 @@ class Client(object):
 
         
     def btn_connect_clicked(self):
-        host = self.connect_widget.hostTextEdit.toPlainText()
-        port = self.connect_widget.portTextEdit.toPlainText()
-        nickname = self.connect_widget.nameTextEdit.toPlainText()
+        host = self.connect_ui.hostTextEdit.toPlainText()
+        port = self.connect_ui.portTextEdit.toPlainText()
+        nickname = self.connect_ui.nameTextEdit.toPlainText()
 
         if len(host) == 0:
             host = "localhost"
@@ -84,7 +84,7 @@ class Client(object):
 
 
     def show_message(self, message):
-        self.chat_widget.textBrowser.append(message)
+        self.chat_ui.textBrowser.append(message)
         
 
     def connect(self, host, port, nickname):
@@ -97,18 +97,18 @@ class Client(object):
 
             return True
         except Exception as e:
-            error_message = "Unable to connect to server \n'{}'".format(str(e))
+            error = "Unable to connect to server \n'{}'".format(str(e))
             print("[INFO]", error)
-            self.show_error("Connection Error", error_message)
-            self.connect_widget.hostTextEdit.clear()
-            self.connect_widget.portTextEdit.clear()
+            self.show_error("Connection Error", error)
+            self.connect_ui.hostTextEdit.clear()
+            self.connect_ui.portTextEdit.clear()
             
             return False
         
 
     def send_message(self):
-        message = self.chat_widget.textEdit.toPlainText()
-        self.chat_widget.textBrowser.append("Me: " + message)
+        message = self.chat_ui.textEdit.toPlainText()
+        self.chat_ui.textBrowser.append("Me: " + message)
 
         print("sent: " + message)
 
@@ -118,7 +118,7 @@ class Client(object):
             error = "Unable to send message '{}'".format(str(e))
             print("[INFO]", error)
             self.show_error("Server Error", error)
-        self.chat_widget.textEdit.clear()
+        self.chat_ui.textEdit.clear()
 
 
     def show_error(self, error_type, message):
