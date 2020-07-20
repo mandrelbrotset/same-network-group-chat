@@ -2,7 +2,7 @@
 
 ## Running the code
 ### Starting the server
-In the commandline, start the server with ```python3 server.py```
+In the commandline, start the server with ```python3 server.py```. Change "localhost" in server.py to "0.0.0.0" to be able to accept connections from other computers.
 
 ### Starting the client app
 In the commandline, start the server with ```python3 client.py```
